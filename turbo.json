@@ -27,6 +27,11 @@
       "cache": false
     }
   },
-  "globalEnv": ["DATABASE_URL", "NEXT_PUBLIC_SITE_URL"],
+  "globalEnv": [
+    "DATABASE_URL",
+    "NEXT_PUBLIC_SITE_URL",
+    "ADMIN_USERNAME",
+    "ADMIN_PASSWORD"
+  ],
   "globalPassThroughEnv": ["NODE_ENV"]
 }

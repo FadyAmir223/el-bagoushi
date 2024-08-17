@@ -1,20 +1,30 @@
-import type { User } from '@prisma/client'
+import type { Product } from '@prisma/client'
 import { PrismaClient } from '@prisma/client'
 
 const db = new PrismaClient()
 
-const DEFAULT_USERS = [
-  { name: 'fady', phone: '010', password: 'aaaa' },
-  { name: 'jessy', phone: '011', password: 'bbb' },
-] satisfies Partial<User>[]
+const PRODUCTS = [
+  {
+    name: 'ارز الباجوشى',
+    description: 'الحجم 600 جم',
+    price: 30,
+    image: 'rice.jpg',
+  },
+  {
+    name: 'مكرونة الباجوشى',
+    description: 'اسباجتى وسط 500 جم',
+    price: 45,
+    image: 'macaro.jpg',
+  },
+] satisfies Partial<Product>[]
 
 async function main() {
   await Promise.all(
-    DEFAULT_USERS.map((user) =>
-      db.user.upsert({
-        where: { phone: user.phone },
+    PRODUCTS.map((product) =>
+      db.product.upsert({
+        where: { name: product.name },
         update: {},
-        create: user,
+        create: product,
       }),
     ),
   )
@@ -25,7 +35,7 @@ main()
     await db.$disconnect()
   })
   .catch(async () => {
-    // console.error(e)
+    // console.error(error)
     await db.$disconnect()
     // @ts-expect-error process exists
     process.exit(1)

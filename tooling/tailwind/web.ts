@@ -1,5 +1,9 @@
 import type { Config } from 'tailwindcss'
 import animate from 'tailwindcss-animate'
+// @ts-expect-error missing .d.ts
+import brandColors from 'tailwindcss-brand-colors'
+// @ts-expect-error missing .d.ts
+import debugScreens from 'tailwindcss-debug-screens'
 
 import base from './base'
 
@@ -36,5 +40,5 @@ export default {
       },
     },
   },
-  plugins: [animate],
+  plugins: [animate, debugScreens, brandColors],
 } satisfies Config

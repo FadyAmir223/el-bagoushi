@@ -1,14 +1,15 @@
 import db from '@repo/db'
 
+export const dynamic = 'force-dynamic'
+
 export default async function Home() {
-  const users = await db.user.findMany({})
+  const products = await db.product.findMany({})
 
   return (
     <main>
-      {users.map((user) => (
-        <div key={user.id}>
-          <h1>{user.name}</h1>
-          <p>{user.phone}</p>
+      {products.map((product) => (
+        <div key={product.id}>
+          <h1>{product.name}</h1>
         </div>
       ))}
     </main>

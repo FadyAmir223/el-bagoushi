@@ -1,14 +1,17 @@
 import './globals.css'
 
-import type { Metadata } from 'next'
-import { Inter } from 'next/font/google'
+import { Roboto } from 'next/font/google'
 
-const inter = Inter({ subsets: ['latin'] })
+import Header from '@/components/home/header'
+import { Toaster } from '@/components/ui/toaster'
+import { env } from '@/lib/env'
+import { cn } from '@/utils/cn'
 
-export const metadata: Metadata = {
-  title: '',
-  description: '',
-}
+const roboto = Roboto({
+  weight: ['300', '400', '500', '700'],
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export default function RootLayout({
   children,
@@ -16,8 +19,19 @@ export default function RootLayout({
   children: React.ReactNode
 }>) {
   return (
-    <html lang='en'>
-      <body className={inter.className}>{children}</body>
+    <html lang='ar' dir='rtl'>
+      <body
+        className={cn(
+          roboto.className,
+          'flex min-h-screen flex-col overflow-x-hidden bg-[#2f2a25] text-[#F1F1F1]',
+          env.NODE_ENV === 'development' && 'debug-screens',
+        )}
+      >
+        <Header />
+        {children}
+
+        <Toaster />
+      </body>
     </html>
   )
 }

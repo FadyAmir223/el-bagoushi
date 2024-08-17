@@ -24,9 +24,10 @@
     "docker:prod:up": "docker compose -f docker-compose.prod.yml up -d",
     "docker:prod:up:swarm": "docker stack deploy -c docker-compose.prod.yml swarm-prod",
     "docker:prod:down": "docker compose -f docker-compose.prod.yml down --remove-orphans",
-    "db:push": "turbo -F @repo/db db:push:dev:env",
-    "db:studio": "turbo -F @repo/db studio",
-    "db:generate": "pnpm -F @repo/db db:generate:dev:env"
+    "db:generate": "pnpm -F @repo/db db:generate:dev:env",
+    "db:push": "pnpm -F @repo/db db:push:dev:env",
+    "db:seed": "pnpm -F @repo/db db:seed:dev:env",
+    "db:studio": "pnpm -F @repo/db db:studio:dev:env"
   },
   "devDependencies": {
     "@commitlint/cli": "^19.4.0",
