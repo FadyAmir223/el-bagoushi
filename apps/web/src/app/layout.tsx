@@ -8,7 +8,7 @@ import { env } from '@/lib/env'
 import { cn } from '@/utils/cn'
 
 const roboto = Roboto({
-  weight: ['300', '400', '500', '700'],
+  weight: ['400', '500', '700'],
   subsets: ['latin'],
   display: 'swap',
 })

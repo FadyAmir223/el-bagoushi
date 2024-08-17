@@ -19,8 +19,6 @@ https://wa.me/message/QMW25LRGTMGYI1
 
 https://t.me/romanyelbagoushi
 
-العنوان مول بانوراما شارع الزيتون - الزيتون - القاهره
-
 فيس و انستا
 
 elbagoushi@gmail.com
