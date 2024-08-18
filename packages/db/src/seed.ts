@@ -8,13 +8,13 @@ const PRODUCTS = [
     name: 'ارز الباجوشى',
     description: 'الحجم 600 جم',
     price: 30,
-    image: 'rice.jpg',
+    image: '/products/ارز الباجوشى/cuid.jpg',
   },
   {
     name: 'مكرونة الباجوشى',
     description: 'اسباجتى وسط 500 جم',
     price: 45,
-    image: 'macaro.jpg',
+    image: '/products/مكرونة الباجوشى/cuid.jpg',
   },
 ] satisfies Partial<Product>[]
 

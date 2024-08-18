@@ -1,7 +1,7 @@
 'use server'
 
 import { existsSync } from 'fs'
-import { mkdir, writeFile } from 'fs/promises'
+import { mkdir, rm, writeFile } from 'fs/promises'
 import { revalidateTag } from 'next/cache'
 import { headers } from 'next/headers'
 import path from 'path'
@@ -60,13 +60,16 @@ export async function deleteProduct(formData: unknown) {
   )
     return { error: 'Permission Denied' }
 
-  console.log(formData)
-
   const result = deleteProductSchema.safeParse(formData)
   if (result.error) return { error: 'معرف منتج غير صحيح' }
 
   const deleteRes = await deleteProductDb(result.data)
   if ('error' in deleteRes) return { error: deleteRes.error }
+
+  await rm(`${ASSETS.path}/products/${deleteRes.name}`, {
+    recursive: true,
+    force: true,
+  })
 
   revalidateTag('products')
 }

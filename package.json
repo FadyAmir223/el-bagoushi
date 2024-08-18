@@ -27,6 +27,7 @@
     "db:generate": "pnpm -F @repo/db db:generate:dev:env",
     "db:push": "pnpm -F @repo/db db:push:dev:env",
     "db:seed": "pnpm -F @repo/db db:seed:dev:env",
+    "db:reset": "pnpm -F @repo/db db:reset:dev:env",
     "db:studio": "pnpm -F @repo/db db:studio:dev:env"
   },
   "devDependencies": {

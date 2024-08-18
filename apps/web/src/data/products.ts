@@ -50,6 +50,8 @@ export async function addProduct(data: {
       select: { id: true },
     })
   } catch (error) {
+    console.log(error)
+
     if (error instanceof Prisma.PrismaClientKnownRequestError)
       if (error.code === 'P2002') return { error: 'اسم منتج مكرر' }
 
@@ -61,7 +63,7 @@ export async function deleteProductDb(id: Product['id']) {
   try {
     return await db.product.delete({
       where: { id },
-      select: { id: true },
+      select: { name: true },
     })
   } catch {
     return { error: 'فشل مسح المنتج' }

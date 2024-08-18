@@ -1,4 +1,4 @@
-FROM node:20.16.0-alpine AS base
+FROM node:20.16.0-alpine3.20 AS base
 
 FROM base AS builder
 RUN apk update && \
@@ -28,8 +28,8 @@ RUN --mount=type=cache,id=pnmcache,target=/pnpm_store \
   pnpm config set store-dir /pnpm_store && \
   pnpm config set package-import-method copy && \
   pnpm install --prefer-offline --ignore-scripts --frozen-lockfile && \
-  pnpm --filter=@repo/db db:generate:dev:env && \
-  pnpm --filter=@repo/db build
+  pnpm -F @repo/db db:generate:dev:env && \
+  pnpm -F @repo/db build
 
 # Build the project
 COPY --from=builder /app/out/full/ .
@@ -51,6 +51,8 @@ RUN --mount=type=secret,id=SECRET_ENVS,required \
 FROM base AS runner
 WORKDIR /app
 
+RUN npm install -g pnpm
+
 # Don't run production as root
 RUN addgroup --system --gid 1001 nodejs
 RUN adduser --system --uid 1001 nextjs
@@ -64,9 +66,10 @@ COPY --from=installer /app/apps/web/package.json .
 COPY --from=installer --chown=nextjs:nodejs /app/apps/web/.next/standalone .
 COPY --from=installer --chown=nextjs:nodejs /app/apps/web/.next/static apps/web/.next/static
 COPY --from=installer --chown=nextjs:nodejs /app/apps/web/public apps/web/public
-COPY --from=installer --chown=nextjs:nodejs /app/apps/web/uploads apps/web/uploads
+COPY --from=installer --chown=nextjs:nodejs /app/apps/web/uploads uploads
 
-COPY --from=builder --chown=nextjs:nodejs /app/out/full/packages/db/src/schema.prisma /app/out/full/packages/db/src/migrations packages/db/src/
+COPY --from=builder --chown=nextjs:nodejs /app/out/full/packages/db/src/schema.prisma packages/db/src/
+COPY --from=builder --chown=nextjs:nodejs /app/out/full/packages/db/src/migrations packages/db/prisma/migrations
 
 COPY --from=installer /app/apps/web/start.sh .
 

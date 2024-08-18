@@ -25,7 +25,7 @@
     "db:generate:stage": "pnpm with-env:stage prisma generate",
     "db:migrate:stage": "pnpm with-env:stage db:migrate:prod",
     "db:seed:stage": "pnpm with-env:stage prisma db seed",
-    "db:migrate:prod": "npx prisma migrate deploy",
+    "db:migrate:prod": "pnpx prisma migrate deploy",
     "format": "prettier --check . --ignore-path ../../.gitignore",
     "lint": "eslint",
     "type-check": "tsc-files --noEmit --emitDeclarationOnly false",

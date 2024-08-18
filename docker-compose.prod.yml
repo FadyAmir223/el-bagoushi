@@ -8,17 +8,22 @@ services:
       network: host
       secrets:
         - SECRET_ENVS
-    ports:
-      - 3000:3000
+    # ports:
+    #   - 3000:3000
     volumes:
       - ./apps/web/uploads:/app/apps/web/uploads
     env_file:
       - ./envs/production/.env.production.docker
       - ./envs/production/.env.production.docker.local
     networks:
-      - internal-prod
+      - proxy
+      - internal-db
     depends_on:
       - db-prod
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.http.routers.frontend.rule=Host(`el-bagoushi.com`) || Host(`www.el-bagoushi.com`)'
+      - 'traefik.http.routers.frontend.tls=true'
     deploy:
       mode: replicated
       replicas: 1
@@ -48,17 +53,39 @@ services:
       - postgres_password
       - postgres_db
     networks:
-      - internal-prod
+      - internal-db
     deploy:
       restart_policy:
         condition: on-failure
+
+  traefik:
+    image: traefik:v3.0
+    container_name: traefik
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges=true
+    networks:
+      - proxy
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - TZ=Africa/Cairo
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ./traefik/traefik.yml:/traefik.yml:ro
+      - ./traefik/ssl/:/ssl-certs/
+      - ./data/logs:/logs:rw
 
 volumes:
   db-prod-data:
 
 networks:
-  internal-prod:
+  internal-db:
     external: false
+  proxy:
+    external: true
 
 secrets:
   SECRET_ENVS:
