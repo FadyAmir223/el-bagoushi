@@ -2,7 +2,7 @@ import AdminNav from '@/components/admin/admin-nav'
 
 const routes = [
   { label: 'اضف منتج', url: 'upload' },
-  { label: 'ادارة المنتجات', url: 'products' },
+  { label: 'امسح منتج', url: 'delete' },
 ]
 
 export default function AdminLayout({
@@ -11,9 +11,9 @@ export default function AdminLayout({
   children: React.ReactNode
 }>) {
   return (
-    <main className='flex h-[calc(100vh-86px)]'>
-      <aside className='h-full w-72 overflow-y-auto bg-zinc-800 p-4'>
-        <ul className='flex flex-col gap-y-3'>
+    <main className='flex flex-col md:h-[calc(100vh-86px)] md:flex-row'>
+      <aside className='block bg-zinc-800 p-4 md:h-full md:w-72 md:overflow-y-auto'>
+        <ul className='flex flex-1 flex-row flex-wrap gap-2 gap-y-3 md:flex-col'>
           {routes.map(({ label, url }) => (
             <AdminNav key={label} url={url}>
               {label}

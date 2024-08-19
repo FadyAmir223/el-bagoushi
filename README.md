@@ -1,6 +1,14 @@
 ```sh
 ssh romany
 rsync -ave ssh . romany:~/app/
+
+rsync --delete -ave ssh \
+  --exclude 'node_modules' \
+  --exclude '.git' \
+  --exclude '**/.turbo' \
+  --exclude 'apps/web/.next' \
+  --exclude 'packages/**/dist' \
+  . romany:~/app
 ```
 
 # data

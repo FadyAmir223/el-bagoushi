@@ -9,12 +9,12 @@ import { cn } from '@/utils/cn'
 const social = [
   {
     label: 'زور صفحة الفيسبوك',
-    url: 'https://www.facebook.com/',
+    url: 'https://www.facebook.com/el-bagoushi',
     icon: FaFacebookF,
   },
   {
     label: 'زور صفحة الانستجرام',
-    url: 'https://www.instagram.com/',
+    url: 'https://www.instagram.com/el_bagoushi',
     icon: FaInstagram,
   },
   {
@@ -24,7 +24,7 @@ const social = [
   },
   {
     label: 'تواصل معنا عبر تيليجرام',
-    url: 'https://t.me/romanyelbagoushi',
+    url: 'https://t.me/romanyelbagoshy',
     icon: FaTelegram,
   },
   {

@@ -5,7 +5,7 @@ import { env } from '@/lib/env'
 // TODO: fill
 const meta = {
   title: 'الباجوشى',
-  description: 'لتعبئة المواد الغذائية',
+  description: 'لتعبئة وتغليف وتوريدات المواد الغذائية',
   image: '/assets/images/logo.webp',
 }
 

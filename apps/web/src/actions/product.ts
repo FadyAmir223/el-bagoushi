@@ -35,7 +35,7 @@ export async function uploadProduct(formData: unknown) {
 
   const { name, description, price, image } = result.data
 
-  const productPath = `/products/${name}`
+  const productPath = `/products/${name.replace(' ', '-')}`
 
   // @ts-expect-error .name exists
   const imagePath = `${productPath}/${crypto.randomUUID()}${path.extname(image.name).toLowerCase()}`

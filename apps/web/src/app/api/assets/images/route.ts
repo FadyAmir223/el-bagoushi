@@ -8,15 +8,6 @@ import sharp from 'sharp'
 
 import { ASSETS, SEARCH_PARAMS } from '@/utils/constants'
 
-/**
- * TODO
- *
- * take this new image, "tags" it (via URL or image hash), and stores that tag in its cache
- * serve this newly created image over its Edge network (CDN)
- *
- * find the image in its cache and serves via CDN without doing anything else
- */
-
 export async function GET(request: NextRequest) {
   const assetPath = request.nextUrl.searchParams.get(SEARCH_PARAMS.path)
   const width = +(request.nextUrl.searchParams.get(SEARCH_PARAMS.width) ?? 0)

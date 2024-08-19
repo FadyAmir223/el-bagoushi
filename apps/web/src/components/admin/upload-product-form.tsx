@@ -53,12 +53,12 @@ export default function UploadProductForm() {
         })
 
       toast({
-        description: 'song has been uploaded',
+        description: 'تم اضافة المتنج',
         variant: 'success',
       })
     } catch {
       toast({
-        description: 'خطأ اثناء رفع المنتج',
+        description: 'خطأ اثناء اضافة المنتج',
         variant: 'destructive',
       })
     }

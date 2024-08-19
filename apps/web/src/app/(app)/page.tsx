@@ -13,19 +13,27 @@ export default async function Home() {
       </h1>
 
       <ul className='grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5'>
-        {products.map(({ id, name, description, price, image }) => (
+        {products.map(({ id, name, description, price, image }, idx) => (
           <li
             key={id}
             className='overflow-hidden rounded-lg border-2 border-primary p-0.5 transition-transform duration-300 hover:scale-[1.03]'
           >
-            <ImageApi
-              src={image}
-              alt={name}
-              width={160}
-              height={90}
-              className='w-full object-contain'
-              sizes='(min-width: 976px) 50vw, 100vw'
-            />
+            <div className='relative aspect-[3/4] w-full'>
+              <ImageApi
+                src={image}
+                alt={name}
+                className='w-full object-contain'
+                sizes='
+                  (max-width: 480px) 100vw, 
+                  (max-width: 768px) 50vw, 
+                  (max-width: 976px) 33vw, 
+                  (max-width: 1240px) 25vw, 
+                  20vw
+                '
+                fill
+                priority={idx < 3}
+              />
+            </div>
             <div className='px-3 py-2'>
               <span className='text-lg font-bold'>
                 {price}

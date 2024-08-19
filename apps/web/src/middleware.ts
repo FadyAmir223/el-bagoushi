@@ -13,6 +13,11 @@ export default async function middleware(req: NextRequest) {
       status: 401,
       headers: { 'WWW-Authenticate': 'Basic' },
     })
+
+  const { pathname } = req.nextUrl
+
+  if (pathname === '/admin')
+    return NextResponse.redirect(new URL('/admin/upload', req.url))
 }
 
 export const config = {

@@ -76,4 +76,6 @@ COPY --from=installer /app/apps/web/start.sh .
 ENV PORT=3000 \
   NEXT_TELEMETRY_DISABLED=1
 
+EXPOSE 3000
+
 CMD ["sh", "start.sh"]
