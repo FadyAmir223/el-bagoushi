@@ -40,7 +40,7 @@ export default async function Home() {
                 <span className='text-primary'> EGP</span>
               </span>
 
-              <h3 className='mb-2 mt-3 font-semibold'>{name}</h3>
+              <p className='mb-2 mt-3 font-semibold'>{name}</p>
               <p className=''>{description}</p>
             </div>
           </li>

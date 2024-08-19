@@ -2,7 +2,6 @@ import type { Metadata } from 'next'
 
 import { env } from '@/lib/env'
 
-// TODO: fill
 const meta = {
   title: 'الباجوشى',
   description: 'لتعبئة وتغليف وتوريدات المواد الغذائية',

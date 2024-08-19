@@ -18,7 +18,6 @@ services:
       - ./apps/web/.env.production
       - ./apps/web/.env.production.local
     networks:
-      - internal-prod
       - proxy
     depends_on:
       - db-prod
@@ -26,7 +25,7 @@ services:
       - traefik.enable=true
       - traefik.http.routers.app-prod.rule=Host(`el-bagoushi.com`) || Host(`www.el-bagoushi.com`)
       - traefik.http.services.app-prod.loadbalancer.server.port=3000
-      - traefik.http.routers.app-prod.tls.certresolver=staging
+      - traefik.http.routers.app-prod.tls.certresolver=staging # production
 
   db-prod:
     image: postgres:16.4-alpine
@@ -46,7 +45,7 @@ services:
       - postgres_password
       - postgres_db
     networks:
-      - internal-prod
+      - proxy
 
   traefik:
     image: traefik:v3.0
@@ -76,8 +75,6 @@ volumes:
   traefik-ssl-certs:
 
 networks:
-  internal-prod:
-    external: false
   proxy:
     external: true
 
